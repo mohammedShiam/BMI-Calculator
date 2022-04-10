@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculation - Javascript Application </title>
+    <link rel="shortcut icon" href="./Image/health-and-fitness.svg" type="image/x-icon">
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        outline: 0;
+    }
+    body{
+        padding: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    h2{
+        text-align: center;
+        margin-bottom: 2rem;
+        text-decoration:underline;
+        font-weight: 500;
+    }
+    form{
+        max-width: 600px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* grid-template-rows:100px 100px; */
+        gap:1rem;
+    }
+    form .form-group > label{
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 16px;
+    }
+    form .form-group > input{
+        width: 100%;
+        padding: 0.3rem;
+        font-size: 14px;
+    }
+    button{
+        cursor: pointer;
+        padding: 0.3rem;
+        
+    }
+    span{
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        margin: 1rem 0;
+    }
+
+    /* Display Result */
+    .display {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-top: 2rem;
+	line-height: 1.3;
+	text-align: center;
+	background: black;
+	color: #fff;
+	padding: 1rem 0;
+}
+    </style>
+</head>
+
+<body>
+    <h2>BMI Calculation</h2>
+    <form>
+
+        <div class="form-group">
+            <label>Weight (Kg)</label>
+            <input type="text" placeholder="Enter Your Weight (Kg)" id="weight" required>
+        </div>
+       <div class="form-group">
+            <Label>Height (m)</Label>
+            <input type="text" placeholder="Enter Your Height" id="height" required>
+       </div>
+        <div class="form-button">
+            <button type="" id="btn">Calculation</button>
+            <button type="reset">Reset</button>
+            <button id="reload">Reload</button>
+        </div>
+        
+
+    </form>
+    <!-- <hr> -->
+    <span>Copyright &copy; All Right Reserved Mohammed Shiam</span>
+    <script>
+        const weight = document.getElementById('weight')
+        const height = document.getElementById('height')
+        const btn = document.getElementById('btn')
+
+        // Reload Browser
+        document.getElementById('reload').addEventListener('click', ()=>{
+            location.reload()
+        })
+
+        
+
+        btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            if(weight.value == '' || height.value == ''){
+                return alert("Please Enter Details!")
+            }
+            const display = document.createElement('p')
+            display.className = 'display';
+            const bmi = Number(weight.value)/(Number(height.value)*Number(height.value))
+           
+            if(bmi < 18.5){
+                display.innerText = `Your BMI is ${bmi} kg/m2\n Sorry! You are Underweight`
+            }else if(bmi >= 18.5 && bmi <=24.9){
+                display.innerText = `Your BMI is ${bmi} kg/m2\n Mashallah! You are Healthy`
+
+            }else if(bmi >= 25 && bmi <=29.9){
+                display.innerText = `Your BMI is ${bmi} kg/m2\n Sorry! You are Overweight`
+            }else if(bmi >= 30){
+                display.innerText = `Your BMI is ${bmi} kg/m2\n Sorry! You are Obese`
+            }
+            document.body.appendChild(display)
+           
+            
+           
+
+
+        })
+
+        const displayCacl = (p)=>{
+           
+           
+        }
+    </script>
+</body>
+</html>
